@@ -44,4 +44,4 @@ jobs:
       with:
         name: coredump
         path: |
-          /usr/share/apport/apport/*
+          /usr/share/apport/apport
