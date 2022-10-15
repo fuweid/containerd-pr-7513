@@ -30,4 +30,4 @@ jobs:
     - name: unit test
       run: |
         go mod tidy
-        sudo $(command -v go) test -race ./
+        sudo GOTRACEBACK=crash $(command -v go) test -race ./
