@@ -27,9 +27,11 @@ jobs:
       with:
         go-version: 1.19.2
     - uses: actions/checkout@v3
-    - name: Unit test
+    - name: Stop apport service
       run: |
         sudo service apport stop
+    - name: Unit test
+      run: |
         ulimit -c unlimited
         cat /proc/sys/kernel/core_pattern
         ulimit -a
