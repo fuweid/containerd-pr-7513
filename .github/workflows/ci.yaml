@@ -27,7 +27,20 @@ jobs:
       with:
         go-version: 1.19.2
     - uses: actions/checkout@v3
-    - name: unit test
+    - name: Unit test
       run: |
+        cat /proc/sys/kernel/core_pattern
+        ulimit -a
         go mod tidy
         sudo GOTRACEBACK=all $(command -v go) test -race ./
+    - name: Check Coredump
+      run: |
+        ls -al /usr/share/apport/apport
+      if: always()
+    - name: Upload Coredump
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: coredump
+        path: |
+          /usr/share/apport/apport/*
