@@ -1,0 +1,25 @@
+name: CI
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  root-test:
+    name: Unit Test
+    runs-on: ubuntu-20.04
+    timeout-minutes: 40
+
+    steps:
+    - uses: actions/setup-go@v3
+      with:
+        go-version: 1.19.2
+    - name: unit test
+      run: |
+        go mod tidy
+        sudo go version
+        sudo go test -v ./
