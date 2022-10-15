@@ -22,5 +22,5 @@ jobs:
     - name: unit test
       run: |
         go mod tidy
-        sudo go version
-        sudo go test -v ./
+        sudo -E PATH=$PATH go version
+        sudo -E PATH=$PATH go test -v ./
